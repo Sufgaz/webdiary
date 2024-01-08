@@ -12,3 +12,11 @@ $(document).ready(function() {
   // Update date and time every minute
   setInterval(displayDateTime, 1); // Update every second
 });
+
+  // Function to save tasks in local storage
+  $('.saveBtn').on('click', function() {
+    var hour = $(this).siblings('.hour').text();
+    var task = $(this).siblings('.description').val();
+    localStorage.setItem(hour, task);
+    console.log('.saveBtn');
+  });
