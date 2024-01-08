@@ -13,10 +13,29 @@ $(document).ready(function() {
   setInterval(displayDateTime, 1); // Update every second
 });
 
+const tasks = document.querySelector('#saveBtn');
   // Function to save tasks in local storage
-  $('.saveBtn').on('click', function() {
-    var hour = $(this).siblings('.hour').text();
-    var task = $(this).siblings('.description').val();
-    localStorage.setItem(hour, task);
-    console.log('.saveBtn');
-  });
+  function saveTasks(tasks) {
+    // Convert the tasks array to a JSON string
+    var tasksString = JSON.stringify(tasks);
+  
+    // Save the tasks string to local storage
+    localStorage.setItem("tasks", tasksString);
+  }
+
+  function loadTasks() {
+    // Check if there are saved tasks in local storage
+    if (localStorage.getItem("tasks")) {
+      // Retrieve the saved tasks from local storage
+      var savedTasks = JSON.parse(localStorage.getItem("tasks"));
+  
+      // Loop through the saved tasks and display them on the page
+      for (var i = 0; i < savedTasks.length; i++) {
+        var task = savedTasks[i];
+  
+        // Display the task on the page
+        console.log(task);
+        // You can modify this code to display the task in your desired format
+      }
+    }
+  };
